@@ -1,13 +1,17 @@
-
+let noiseScale = 0.02;
 function setup () {
  createCanvas(1200, 800);
+ background(100);
+ line(15, 25, 70, 90);
 }
 
 function draw () {
- if (mouseIsPressed) {
-  fill(0);
- } else {
-  fill(255);
+ background(0);
+ for (let x = 0; x < width; x++) {
+  for (let y = 0; y < array.length; y++) {
+   let noiseVal = noise((x) * noiseScale, Y * noiseScale);
+
+  }
+
  }
- ellipse(mouseX, mouseY, 80, 80);
 }
