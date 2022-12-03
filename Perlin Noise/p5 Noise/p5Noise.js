@@ -19,5 +19,5 @@ function draw () {
       rect(x, y, resolution, resolution);
     }
   }
-  xOff += 5;
+  // xOff += 5;
 }
