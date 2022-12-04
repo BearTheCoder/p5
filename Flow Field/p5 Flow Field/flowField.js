@@ -53,16 +53,10 @@ function setup () {
   for (let i = 0; i < settings.particleCount; i++) {
     particles[i] = new Particle();
   }
-
-
   for (let i = 0; i <= settings.gridSizeX; i += settings.resolution) {
     flowField[i] = [];
   }
-
-
-
-  background(
-    color(settings.backgroundColorRed, settings.backgroundColorGreen, settings.backgroundColorBlue));
+  background(color(settings.backgroundColorRed, settings.backgroundColorGreen, settings.backgroundColorBlue));
 }
 
 function draw () {
@@ -83,7 +77,6 @@ function draw () {
         settings.particleTransparency = 100;
         showFlowLines(x, y, v);
       }
-
       v.setMag(settings.adherence);
       flowField[x][y] = v;
     }
