@@ -1,6 +1,7 @@
 const newParticleColor = document.getElementById("particleColor");
 const newBackgroundColor = document.getElementById("backgroundColor");
 const htmlInputValues = document.getElementsByClassName("newValueInput");
+const htmlInputLabels = Array.from(document.getElementsByClassName("newValueLabel"));
 
 function turnOnNoise () {
   background(0);
@@ -42,4 +43,13 @@ function convertHexToRGB (hexColor) {
     blue: parseInt(hexColor.substring(5, 7), 16),
   };
   return convertedParticleColor;
+}
+
+function updateLabel () {
+  for (let i = 0; i < htmlInputValues.length; i++) {
+    if (!htmlInputValues[i].id.includes("Color")) {
+      let label = htmlInputLabels.find((label) => label.getAttribute("for") === htmlInputValues[i].id);
+      label.innerText = `${label.innerText.substring(0, label.innerText.indexOf(":") + 1)} ${htmlInputValues[i].value}`;
+    }
+  }
 }

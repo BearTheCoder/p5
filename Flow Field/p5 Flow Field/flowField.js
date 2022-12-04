@@ -3,7 +3,7 @@
 
 //DOM Elements
 const framerateHeader = document.getElementById("framerate");
-const gridSize = 800;
+
 let canvasHasPerlinNoise = false;
 let canvasHasFlowLines = false;
 let xOffset = 0;
@@ -11,6 +11,10 @@ let yOffset = 0;
 let zOffset = 0;
 
 let settings = {
+  //Canvas Settings
+  gridSizeX: 1200,
+  gridSizeY: 800,
+
   // BG Settings
   backgroundColorRed: 0, //yes
   backgroundColorGreen: 0, //yes
@@ -45,13 +49,18 @@ function setup () {
   xOffset = Math.random() * 1000;
   yOffset = Math.random() * 1000;
   zOffset = Math.random() * 1000;
-  createCanvas(gridSize, gridSize); //finds the "<main>" tag and adds a canvas to it with the the specifications
+  createCanvas(settings.gridSizeX, settings.gridSizeY); //finds the "<main>" tag and adds a canvas to it with the the specifications
   for (let i = 0; i < settings.particleCount; i++) {
     particles[i] = new Particle();
   }
-  for (let i = 0; i <= gridSize; i += settings.resolution) {
+
+
+  for (let i = 0; i <= settings.gridSizeX; i += settings.resolution) {
     flowField[i] = [];
   }
+
+
+
   background(
     color(settings.backgroundColorRed, settings.backgroundColorGreen, settings.backgroundColorBlue));
 }
@@ -61,8 +70,8 @@ function draw () {
   if (canvasHasFlowLines) {
     background(0);
   }
-  for (let x = 0; x < gridSize; x += settings.resolution) {
-    for (let y = 0; y < gridSize; y += settings.resolution) {
+  for (let x = 0; x < settings.gridSizeX; x += settings.resolution) {
+    for (let y = 0; y < settings.gridSizeY; y += settings.resolution) {
       let noiseVal = noise((x + xOffset) * settings.noiseScale, (y + yOffset) * settings.noiseScale, zOffset * settings.noiseScale);
       let v = p5.Vector.fromAngle(noiseVal * (PI * settings.flowAngle));
 
