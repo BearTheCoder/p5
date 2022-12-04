@@ -1,0 +1,14 @@
+#mainHousing {
+  display: flex;
+  flex-direction: row;
+}
+
+#controlsHousing {
+  display: flex;
+  flex-direction: column;
+}
+
+#inlineInput {
+  display: flex;
+  flex-direction: row;
+}

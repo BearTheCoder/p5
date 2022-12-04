@@ -2,7 +2,7 @@ function Particle () {
  this.pos = createVector(random(width), random(height));
  this.vel = createVector(0, 0);
  this.acc = createVector(0, 0);
- this.maxSpeed = particleMaxSpeed;
+ this.maxSpeed = settings.particleMaxSpeed;
  this.prevPos = this.pos.copy();
 
  this.update = () => {
@@ -13,8 +13,8 @@ function Particle () {
  };
 
  this.follow = () => {
-  let x = floor(this.pos.x / resolution) * resolution;
-  let y = floor(this.pos.y / resolution) * resolution;
+  let x = floor(this.pos.x / settings.resolution) * settings.resolution;
+  let y = floor(this.pos.y / settings.resolution) * settings.resolution;
   this.applyForce(flowField[x][y]);
  };
 
@@ -23,8 +23,8 @@ function Particle () {
  };
 
  this.show = () => {
-  stroke(color(particleColorRed, particleColorGreen, particleColorBlue, particleTransparency));
-  strokeWeight(particleStrokeWeight);
+  stroke(color(settings.particleColorRed, settings.particleColorGreen, settings.particleColorBlue, settings.particleTransparency));
+  strokeWeight(settings.particleStrokeWeight);
   line(this.pos.x, this.pos.y, this.prevPos.x, this.prevPos.y);
   this.updatePrev();
  };

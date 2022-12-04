@@ -3,46 +3,57 @@
 
 //DOM Elements
 const framerateHeader = document.getElementById("framerate");
-
-//Canvas
 const gridSize = 800;
-const backgroundColorRed = 0;
-const backgroundColorGreen = 0;
-const backgroundColorBlue = 0;
 let canvasHasPerlinNoise = false;
 let canvasHasFlowLines = false;
-
-//Perlin Noise
-const noiseScale = 0.01;
-const resolution = 20;
-const zSpeed = 0.1;
+let xOffset = 0;
+let yOffset = 0;
 let zOffset = 0;
 
-//Particle Appearance 
-const particleCount = 10000;
-const particleStrokeWeight = .5;
-const particleColorRed = 255;
-const particleColorGreen = 255;
-const particleColorBlue = 255;
-let particleTransparency = 20;
+let settings = {
+  // BG Settings
+  backgroundColorRed: 0, //yes
+  backgroundColorGreen: 0, //yes
+  backgroundColorBlue: 0, //yes
 
-//Flow Field Physics
-const adherence = .1;
-const particleMaxSpeed = 1;
+  //Particle Settings
+  particleCount: 10000, //yes
+  particleStrokeWeight: .5, //yes
+  particleColorRed: 255,//yes
+  particleColorGreen: 255,//yes
+  particleColorBlue: 255,//yes
+  particleTransparency: 20,//yes
+
+  //Noise Settings
+  noiseScale: .01,
+  resolution: 10,
+  xSpeed: 0,
+  ySpeed: 0,
+  zSpeed: 0,
+
+  //Physics Settings
+  adherence: 1,
+  particleMaxSpeed: 2,
+  flowAngle: 2,
+};
 
 let particles = [];
 let flowField = [];
 
-
 function setup () {
+  particles = [];
+  xOffset = Math.random() * 1000;
+  yOffset = Math.random() * 1000;
+  zOffset = Math.random() * 1000;
   createCanvas(gridSize, gridSize); //finds the "<main>" tag and adds a canvas to it with the the specifications
-  for (let i = 0; i < particleCount; i++) {
+  for (let i = 0; i < settings.particleCount; i++) {
     particles[i] = new Particle();
   }
-  for (let i = 0; i <= gridSize; i += resolution) {
+  for (let i = 0; i <= gridSize; i += settings.resolution) {
     flowField[i] = [];
   }
-  background(color(backgroundColorRed, backgroundColorGreen, backgroundColorBlue));
+  background(
+    color(settings.backgroundColorRed, settings.backgroundColorGreen, settings.backgroundColorBlue));
 }
 
 function draw () {
@@ -50,24 +61,26 @@ function draw () {
   if (canvasHasFlowLines) {
     background(0);
   }
-  for (let x = 0; x < gridSize; x += resolution) {
-    for (let y = 0; y < gridSize; y += resolution) {
-      let noiseVal = noise(x * noiseScale, y * noiseScale, zOffset * noiseScale);
-      let v = p5.Vector.fromAngle(noiseVal * TWO_PI);
+  for (let x = 0; x < gridSize; x += settings.resolution) {
+    for (let y = 0; y < gridSize; y += settings.resolution) {
+      let noiseVal = noise((x + xOffset) * settings.noiseScale, (y + yOffset) * settings.noiseScale, zOffset * settings.noiseScale);
+      let v = p5.Vector.fromAngle(noiseVal * (PI * settings.flowAngle));
 
       if (canvasHasPerlinNoise) {
-        particleTransparency = 100;
+        settings.particleTransparency = 100;
         showPerlinNoise(x, y, noiseVal);
       }
       if (canvasHasFlowLines) {
-        particleTransparency = 100;
+        settings.particleTransparency = 100;
         showFlowLines(x, y, v);
       }
 
-      v.setMag(adherence);
+      v.setMag(settings.adherence);
       flowField[x][y] = v;
     }
-    zOffset += zSpeed;
+    xOffset += settings.xSpeed;
+    yOffset += settings.ySpeed;
+    zOffset += settings.zSpeed;
   }
   showFlowField();
 
@@ -76,17 +89,16 @@ function draw () {
 function showPerlinNoise (x, y, noiseVal) {
   noStroke();
   fill(noiseVal * 255);
-  rect(x, y, resolution, resolution);
+  rect(x, y, settings.resolution, settings.resolution);
 }
 
 function showFlowLines (x, y, v) {
-
   push();
   stroke(255);
   strokeWeight(.4);
   translate(x, y);
   rotate(v.heading());
-  line(0, 0, resolution, 0);
+  line(0, 0, settings.resolution, 0);
   pop();
 }
 
