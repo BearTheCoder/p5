@@ -93,3 +93,7 @@ function showFlowLines (x, y, v) {
   line(0, 0, settings.gridSquareSize, 0);
   pop();
 }
+
+function takeScreenshot () {
+  saveCanvas(myCanvas, "screenshot.png");
+}

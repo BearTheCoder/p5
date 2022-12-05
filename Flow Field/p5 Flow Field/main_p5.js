@@ -3,12 +3,13 @@
 
 let particles = [];
 let flowField = [];
+let myCanvas = null;
 
 function setup () {
   settings.xOffset = Math.random() * 1000;
   settings.yOffset = Math.random() * 1000;
   settings.zOffset = Math.random() * 1000;
-  createCanvas(settings.gridSizeX, settings.gridSizeY);
+  myCanvas = createCanvas(settings.gridSizeX, settings.gridSizeY);
   updateParticles();
   updateFlowPhysics();
   background(color(settings.backgroundColorRed, settings.backgroundColorGreen, settings.backgroundColorBlue));
