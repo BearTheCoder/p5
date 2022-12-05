@@ -13,8 +13,8 @@ function Particle () {
  };
 
  this.follow = () => {
-  let x = floor(this.pos.x / settings.resolution) * settings.resolution;
-  let y = floor(this.pos.y / settings.resolution) * settings.resolution;
+  let x = floor(this.pos.x / settings.gridSquareSize) * settings.gridSquareSize;
+  let y = floor(this.pos.y / settings.gridSquareSize) * settings.gridSquareSize;
   this.applyForce(flowField[x][y]);
  };
 
@@ -54,4 +54,4 @@ function Particle () {
    this.updatePrev();
   }
  };
-}
+};
