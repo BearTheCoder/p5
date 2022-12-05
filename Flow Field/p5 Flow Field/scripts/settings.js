@@ -1,7 +1,7 @@
 let settings = {
  //Canvas Settings
- gridSizeX: 1200,
- gridSizeY: 800,
+ gridSizeX: 1600,
+ gridSizeY: 900,
  canvasHasPerlinNoise: false,
  canvasHasFlowLines: false,
  clearBackground: false,

@@ -7,43 +7,56 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Flow Fields</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Monoton&display=swap" rel="stylesheet">
 </head>
 
 <body>
-  <div id="mainHousing">
+  <div class="mainHousing">
     <!-- CONTROLS -->
     <div id="controlsHousing">
+      <div id="flowFieldHeader">
+        <h3>Flow Field</h3>
+      </div>
 
       <!-- Canvas -->
-      <label class="newValueLabel" for="gridSizeX">Canvas Width: 1200</label>
-      <input id="gridSizeX" onchange="updateSettings()" class="newValueInput" type="range" min="200" max="1700"
-        value="1200" step="100">
-      <label class="newValueLabel" for="gridSizeY">Canvas Height: 800</label>
-      <input id="gridSizeY" onchange="updateSettings()" class="newValueInput" type="range" min="200" max="900"
-        value="800" step="100">
+      <label class="newValueLabel" for="gridSizeX">Canvas Width: 1600</label>
+      <input id="gridSizeX" class="newValueInput" onchange="updateLabels()" type="range" min="200" max="1600"
+        value="1600" step="100">
+      <label class="newValueLabel" for="gridSizeY">Canvas Height: 900</label>
+      <input id="gridSizeY" class="newValueInput" onchange="updateLabels()" type="range" min="200" max="900" value="900"
+        step="100">
       <label for="backgroundColor">Background Color:</label>
       <input id="backgroundColor" class="newValueInput" type="color" value="#000000">
-
-      <br>
 
       <!-- Reload Button -->
       <button onClick="reloadCanvas()">Reload Canvas</button>
 
-      <br><br>
+      <br>
 
-      <div id="inlineInput">
-        <label for="pauseCanvas">Pause Canvas:</label>
-        <input id="pauseCanvas" type="checkbox" onclick="activateCanvasPause()">
+      <div class="checkboxContainer">
+        <div class="rightJustifyTitle">
+          <label for="pauseCanvas">Pause Canvas:</label>
+        </div>
+        <div class="checkboxHousing">
+          <input id="pauseCanvas" type="checkbox" onclick="activateCanvasPause()">
+        </div>
       </div>
 
       <br>
 
       <!-- Colors -->
       <label for="particleColor">Particle Color:</label>
-      <input id="particleColor" class="newValueInput" type="color" value="#ffffff" onchange="getPixelColor()">
+      <input id="particleColor" class="newValueInput" type="color" value="#ffffff" onchange="getPixelColor()"
+        width="200">
 
       <!-- Sliders -->
-      <label class="newValueLabel" for="particleTransparency">Particle Transparency: 20</label>
+      <label class="newValueLabel" for="particleTransparency">Transparency: 20</label>
       <input id="particleTransparency" class="newValueInput" onchange="updateSettings()" type="range" min="5" max="100"
         value="20" step="1">
       <label class="newValueLabel" for="particleStrokeWeight">Stroke Weight: 0.5</label>
@@ -80,34 +93,90 @@
       <br>
 
       <!-- Checkboxes -->
-      <div id="inlineInput">
-        <label for="clearBackground">Clear Background:</label>
-        <input id="clearBackground" type="checkbox" onclick="activateBackgroundClearing()">
+      <div class="checkboxContainer">
+        <div class="rightJustifyTitle">
+          <label for="clearBackground">BG Refresh:</label>
+        </div>
+        <div class="checkboxHousing">
+          <input id="clearBackground" type="checkbox" onclick="activateBackgroundClearing()">
+        </div>
       </div>
-      <div id="inlineInput">
-        <label for="noiseCheckbox">Show Noise:</label>
-        <input id="noiseCheckbox" type="checkbox" onclick="turnOnNoise()">
+
+      <div class="checkboxContainer">
+        <div class="rightJustifyTitle">
+          <label for="noiseCheckbox">Show Noise:</label>
+        </div>
+        <div class="checkboxHousing">
+          <input id="noiseCheckbox" type="checkbox" onclick="turnOnNoise()">
+        </div>
       </div>
-      <div id="inlineInput">
-        <label for="flowLinesCheckbox">Show Flow Lines:</label>
-        <input id="flowLinesCheckbox" type="checkbox" onclick="turnOnFlowLines()">
+
+      <div class="checkboxContainer">
+        <div class="rightJustifyTitle">
+          <label for="flowLinesCheckbox">Show Flow Lines:</label>
+        </div>
+        <div class="checkboxHousing">
+          <input id="flowLinesCheckbox" type="checkbox" onclick="turnOnFlowLines()">
+        </div>
       </div>
 
       <br>
 
       <button onClick="takeScreenshot()">Take Screenshot</button>
 
-      <br>
 
       <!-- Frame Rate -->
-      <h2 id="framerate"></h2>
+      <h3 id="framerate"></h3>
     </div>
 
     <!-- CANVAS -->
     <div id="canvasHousing">
-      <main id="myCanvas"></main>
+      <main id="myCanvas">
+      </main>
     </div>
+  </div>
 
+  <div class=" mainHousing">
+    <div id="linkHousing">
+      <a href="github.com">Look at the code</a>
+      <a href="github.com">Buy me a Coffee</a>
+      <a href="github.com">Join the Discord</a>
+      <a href="github.com">Check out my YouTube</a>
+      <a href="github.com">Twitter</a>
+    </div>
+  </div>
+
+  <div class="mainHousing">
+    <div id="sidebar">
+      <p>asdasdas</p>
+    </div>
+    <div id="mainContent">
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus fugiat totam suscipit aperiam explicabo
+        velit
+        nobis enim asperiores animi, pariatur sit optio error maiores, at sint ullam deserunt. Eum, id.
+        Ullam laborum fuga eos modi culpa, illo libero expedita quam, voluptates distinctio a praesentium eaque fugiat
+        eligendi ipsum doloribus tempora vel, possimus labore! Sunt ut aperiam illo! Amet, odio adipisci.
+        Magni quisquam, cupiditate vel aspernatur sapiente enim consectetur, earum unde, assumenda expedita quidem
+        aliquam alias placeat fugiat beatae! Beatae fuga quae temporibus est iure illum non assumenda perferendis ad
+        nisi.
+        Vel quo nobis quas cumque maiores repellendus suscipit doloremque molestiae quasi neque, modi magni
+        exercitationem, ducimus iusto obcaecati nam. Id, laboriosam soluta recusandae iusto laborum ut eius ducimus
+        sunt
+        sed?
+        Neque obcaecati dolores inventore mollitia facilis qui ipsam modi excepturi reprehenderit quidem, pariatur
+        officiis similique explicabo consequuntur molestias porro debitis beatae, minima blanditiis nisi id quasi
+        deserunt. Dolorum, natus exercitationem!
+        Assumenda dicta eligendi hic blanditiis voluptas, ab quia corporis fugit reiciendis sunt voluptate culpa
+        tempore
+        omnis tenetur pariatur fuga reprehenderit nam error temporibus consequuntur itaque. Praesentium neque iste
+        necessitatibus eos.
+        Voluptate nulla minima dolor accusantium nostrum esse possimus non molestias obcaecati cupiditate ducimus
+        delectus cum sint est quaerat ipsam blanditiis saepe maxime assumenda consequuntur qui, commodi tenetur
+        aspernatur. Eligendi, sunt.
+        Ab, ducimus aliquid officia omnis est enim? Consequatur voluptatem earum facere a rerum perferendis at ex,
+        dolor
+        dicta impedit accusantium quibusdam ipsam quam aspernatur assumenda odit ab ullam fuga officia?</p>
+    </div>
   </div>
 </body>
 <script src="../../p5.js"></script>

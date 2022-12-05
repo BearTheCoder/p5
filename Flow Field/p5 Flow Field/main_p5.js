@@ -24,8 +24,8 @@ function draw () {
     null;
     for (let x = 0; x < settings.gridSizeX; x += settings.gridSquareSize) {
       for (let y = 0; y < settings.gridSizeY; y += settings.gridSquareSize) {
-        let noiseVal = noise((
-          x + settings.xOffset) * settings.noiseCrowding,
+        let noiseVal = noise(
+          (x + settings.xOffset) * settings.noiseCrowding,
           (y + settings.yOffset) * settings.noiseCrowding,
           settings.zOffset * settings.noiseCrowding);
         let v = p5.Vector.fromAngle(noiseVal * (PI * settings.flowMultiplier));

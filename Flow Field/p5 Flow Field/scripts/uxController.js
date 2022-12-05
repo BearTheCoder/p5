@@ -63,12 +63,7 @@ function convertHexToRGB (hexColor) {
 }
 
 function updateSettings () {
-  for (let i = 0; i < htmlInputValues.length; i++) {
-    if (!htmlInputValues[i].id.includes("Color")) {
-      let label = htmlInputLabels.find((label) => label.getAttribute("for") === htmlInputValues[i].id);
-      label.innerText = `${label.innerText.substring(0, label.innerText.indexOf(":") + 1)} ${htmlInputValues[i].value}`;
-    }
-  }
+  updateLabels();
   for (let i = 0; i < htmlInputValues.length; i++) {
     if (!htmlInputValues[i].id.includes("Color")) {
       settings[htmlInputValues[i].id] = parseFloat(htmlInputValues[i].value);
@@ -76,6 +71,15 @@ function updateSettings () {
   }
   updateParticles();
   updateFlowPhysics();
+}
+
+function updateLabels () {
+  for (let i = 0; i < htmlInputValues.length; i++) {
+    if (!htmlInputValues[i].id.includes("Color")) {
+      let label = htmlInputLabels.find((label) => label.getAttribute("for") === htmlInputValues[i].id);
+      label.innerText = `${label.innerText.substring(0, label.innerText.indexOf(":") + 1)} ${htmlInputValues[i].value}`;
+    }
+  }
 }
 
 function showPerlinNoise (x, y, noiseVal) {
