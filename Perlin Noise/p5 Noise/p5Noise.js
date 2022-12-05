@@ -1,13 +1,14 @@
 // https://p5js.org/reference/#/p5
 
-let gridSize = 200;
+let gridSizeX = 1000;
+let gridSizeY = 1700;
 let noiseScale = 0.02;
 let resolution = 5;
 let xOff = 0;
 let yOff = 10;
 
 function setup () {
-  createCanvas(gridSize, gridSize);
+  createCanvas(gridSizeX, gridSizeY);
 }
 
 function draw () {
