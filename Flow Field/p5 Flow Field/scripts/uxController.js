@@ -69,7 +69,6 @@ function updateSettings () {
       settings[htmlInputValues[i].id] = parseFloat(htmlInputValues[i].value);
     }
   }
-  updateParticles();
   updateFlowPhysics();
 }
 
@@ -99,5 +98,5 @@ function showFlowLines (x, y, v) {
 }
 
 function takeScreenshot () {
-  saveCanvas(myCanvas, "screenshot.png");
+  saveCanvas(document.getElementById("defaultCanvas0"), "screenshot.png");
 }
