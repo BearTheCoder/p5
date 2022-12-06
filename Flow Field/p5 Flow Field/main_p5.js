@@ -8,10 +8,11 @@ function setup () {
   settings.xOffset = Math.random() * 1000;
   settings.yOffset = Math.random() * 1000;
   settings.zOffset = Math.random() * 1000;
+  getDivBoundsForCanvas();
   createCanvas(settings.gridSizeX, settings.gridSizeY);
+  background(color(settings.backgroundColorRed, settings.backgroundColorGreen, settings.backgroundColorBlue));
   updateParticles();
   updateFlowPhysics();
-  background(color(settings.backgroundColorRed, settings.backgroundColorGreen, settings.backgroundColorBlue));
 };
 
 function draw () {
@@ -20,7 +21,6 @@ function draw () {
     if (settings.clearBackground) {
       background(color(settings.backgroundColorRed, settings.backgroundColorGreen, settings.backgroundColorBlue));
     }
-    null;
     for (let x = 0; x < settings.gridSizeX; x += settings.gridSquareSize) {
       for (let y = 0; y < settings.gridSizeY; y += settings.gridSquareSize) {
         let noiseVal = noise(
@@ -37,7 +37,13 @@ function draw () {
           showFlowLines(x, y, v);
         }
         v.setMag(settings.adherence);
-        flowField[x][y] = v;
+        try {
+          flowField[x][y] = v;
+        }
+        catch (err) {
+          console.log(flowField.length);
+          console.log(v);
+        }
       }
       settings.xOffset += settings.xSpeed;
       settings.yOffset += settings.ySpeed;
@@ -54,6 +60,8 @@ function draw () {
 
 function updateParticles () {
   particles = [];
+  updateLabels();
+  updateSettings();
   for (let i = 0; i < settings.particleCount; i++) {
     particles[i] = new Particle();
   }

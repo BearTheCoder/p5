@@ -1,24 +1,24 @@
 let settings = {
  //Canvas Settings
- gridSizeX: 1600,
- gridSizeY: 900,
+ gridSizeX: 0,
+ gridSizeY: 0,
  canvasHasPerlinNoise: false,
  canvasHasFlowLines: false,
  clearBackground: false,
  pauseCanvas: false,
 
  // BG Settings
- backgroundColorRed: 0, //yes
- backgroundColorGreen: 0, //yes
- backgroundColorBlue: 0, //yes
+ backgroundColorRed: 0,
+ backgroundColorGreen: 0,
+ backgroundColorBlue: 0,
 
  //Particle Settings
- particleCount: 10000, //yes
- particleStrokeWeight: .5, //yes
- particleColorRed: 255,//yes
- particleColorGreen: 255,//yes
- particleColorBlue: 255,//yes
- particleTransparency: 20,//yes
+ particleCount: 10000,
+ particleStrokeWeight: .5,
+ particleColorRed: 255,
+ particleColorGreen: 255,
+ particleColorBlue: 255,
+ particleTransparency: 20,
 
  //Noise Settings
  noiseCrowding: .01,

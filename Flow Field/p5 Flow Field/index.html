@@ -25,14 +25,8 @@
       </div>
 
       <!-- Canvas -->
-      <label class="newValueLabel" for="gridSizeX">Canvas Width: 1600</label>
-      <input id="gridSizeX" class="newValueInput" onchange="updateLabels()" type="range" min="200" max="1600"
-        value="1600" step="100">
-      <label class="newValueLabel" for="gridSizeY">Canvas Height: 900</label>
-      <input id="gridSizeY" class="newValueInput" onchange="updateLabels()" type="range" min="200" max="900" value="900"
-        step="100">
       <label for="backgroundColor">Background Color:</label>
-      <input id="backgroundColor" class="newValueInput" type="color" value="#000000">
+      <input id="backgroundColor" type="color" value="#000000">
 
       <!-- Reload Button -->
       <button onClick="reloadCanvas()">Reload Canvas</button>
@@ -63,7 +57,7 @@
       <input id="particleStrokeWeight" class="newValueInput" onchange="updateSettings()" type="range" min=".2" max="10"
         value=".5" step=".1">
       <label class="newValueLabel" for="particleCount">Particle Count: 10000</label>
-      <input id="particleCount" class="newValueInput" onchange="updateSettings()" type="range" min="100" max="20000"
+      <input id="particleCount" class="newValueInput" onchange="updateParticles()" type="range" min="100" max="20000"
         value="10000" step="100">
       <label class="newValueLabel" for="noiseCrowding">Noise Crowding: 0.01</label>
       <input id="noiseCrowding" class="newValueInput" onchange="updateSettings()" type="range" min="0.001" max=".05"
@@ -124,7 +118,6 @@
 
       <button onClick="takeScreenshot()">Take Screenshot</button>
 
-
       <!-- Frame Rate -->
       <h3 id="framerate"></h3>
     </div>
@@ -138,11 +131,12 @@
 
   <div class=" mainHousing">
     <div id="linkHousing">
-      <a href="github.com">Look at the code</a>
-      <a href="github.com">Buy me a Coffee</a>
-      <a href="github.com">Join the Discord</a>
-      <a href="github.com">Check out my YouTube</a>
-      <a href="github.com">Twitter</a>
+      <a href="https://github.com/BearTheCoder/p5/tree/master/Flow%20Field/p5%20Flow%20Field" target="_blank">Look at
+        the code</a>
+      <a href="https://www.buymeacoffee.com/bearthecoder" target="_blank">Buy me a Coffee</a>
+      <a href="https://discord.gg/DuMJjretE2" target="_blank">Join the Discord</a>
+      <a href="https://www.youtube.com/channel/UCWg8LAQk6NLQfj4Wr3zImKA" target="_blank">Check out my YouTube</a>
+      <a href="https://twitter.com/BearTheCoder" target="_blank">Twitter</a>
     </div>
   </div>
 
@@ -151,6 +145,7 @@
       <p>asdasdas</p>
     </div>
     <div id="mainContent">
+      <h3> I'm gonna do this later...</h3>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus fugiat totam suscipit aperiam explicabo
         velit
         nobis enim asperiores animi, pariatur sit optio error maiores, at sint ullam deserunt. Eum, id.

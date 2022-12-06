@@ -1,65 +1,14 @@
 const newParticleColor = document.getElementById("particleColor");
 const newBackgroundColor = document.getElementById("backgroundColor");
-const htmlInputValues = document.getElementsByClassName("newValueInput");
 const clearBackgroundCheckbox = document.getElementById('clearBackground');
+const canvasHousing = document.getElementById('canvasHousing');
+
+const htmlInputValues = document.getElementsByClassName("newValueInput");
 const htmlInputLabels = Array.from(document.getElementsByClassName("newValueLabel"));
 
-function activateCanvasPause () {
-  settings.pauseCanvas = !settings.pauseCanvas;
-}
-
-function activateBackgroundClearing () {
-  if (!settings.canvasHasPerlinNoise && !settings.canvasHasFlowLines) {
-    settings.clearBackground = !settings.clearBackground;
-    getBackgroundColor();
-  }
-}
-
-function turnOnNoise () {
-  background(0);
-  settings.canvasHasPerlinNoise = !settings.canvasHasPerlinNoise;
-  if (clearBackgroundCheckbox.checked) {
-    clearBackgroundCheckbox.checked ? activateBackgroundClearing() : null;
-  }
-}
-
-function turnOnFlowLines () {
-  background(0);
-  settings.canvasHasFlowLines = !settings.canvasHasFlowLines;
-  settings.clearBackground = settings.canvasHasFlowLines ? true : false;
-  if (!settings.canvasHasPerlinNoise && !settings.canvasHasFlowLines && clearBackgroundCheckbox.checked) {
-    clearBackgroundCheckbox.checked ? activateBackgroundClearing() : null;
-  }
-}
-
-function reloadCanvas () {
-  updateSettings();
-  getBackgroundColor();
-  getPixelColor();
-  setup();
-}
-
-function getPixelColor () {
-  const convertedParticleColor = convertHexToRGB(particleColor.value);
-  settings.particleColorRed = convertedParticleColor.red;
-  settings.particleColorGreen = convertedParticleColor.green;
-  settings.particleColorBlue = convertedParticleColor.blue;
-}
-
-function getBackgroundColor () {
-  const convertedBackgroundColor = convertHexToRGB(newBackgroundColor.value);
-  settings.backgroundColorRed = convertedBackgroundColor.red;
-  settings.backgroundColorGreen = convertedBackgroundColor.green;
-  settings.backgroundColorBlue = convertedBackgroundColor.blue;
-}
-
-function convertHexToRGB (hexColor) {
-  const convertedParticleColor = {
-    red: parseInt(hexColor.substring(1, 3), 16),
-    green: parseInt(hexColor.substring(3, 5), 16),
-    blue: parseInt(hexColor.substring(5, 7), 16),
-  };
-  return convertedParticleColor;
+function getDivBoundsForCanvas () {
+  settings.gridSizeX = floor(canvasHousing.clientWidth / 100) * 100;
+  settings.gridSizeY = floor(canvasHousing.clientHeight / 100) * 100;
 }
 
 function updateSettings () {
@@ -81,6 +30,50 @@ function updateLabels () {
   }
 }
 
+function reloadCanvas () {
+  updateSettings();
+  updateParticles();
+  updateFlowPhysics();
+  getBackgroundColor();
+  getPixelColor();
+  setup();
+}
+
+function getBackgroundColor () {
+  const convertedBackgroundColor = convertHexToRGB(newBackgroundColor.value);
+  settings.backgroundColorRed = convertedBackgroundColor.red;
+  settings.backgroundColorGreen = convertedBackgroundColor.green;
+  settings.backgroundColorBlue = convertedBackgroundColor.blue;
+}
+
+function getPixelColor () {
+  const convertedParticleColor = convertHexToRGB(particleColor.value);
+  settings.particleColorRed = convertedParticleColor.red;
+  settings.particleColorGreen = convertedParticleColor.green;
+  settings.particleColorBlue = convertedParticleColor.blue;
+}
+
+// *****     Checkbox On Click Functions     *****
+
+function activateCanvasPause () {
+  settings.pauseCanvas = !settings.pauseCanvas;
+}
+
+function activateBackgroundClearing () {
+  settings.clearBackground = !settings.clearBackground;
+  getBackgroundColor();
+}
+
+function turnOnNoise () {
+  background(0);
+  settings.canvasHasPerlinNoise = !settings.canvasHasPerlinNoise;
+}
+
+function turnOnFlowLines () {
+  background(0);
+  settings.canvasHasFlowLines = !settings.canvasHasFlowLines;
+}
+
 function showPerlinNoise (x, y, noiseVal) {
   noStroke();
   fill(noiseVal * 255);
@@ -99,4 +92,15 @@ function showFlowLines (x, y, v) {
 
 function takeScreenshot () {
   saveCanvas(document.getElementById("defaultCanvas0"), "screenshot.png");
+}
+
+// *****     Internal Functions     *****
+
+function convertHexToRGB (hexColor) {
+  const convertedParticleColor = {
+    red: parseInt(hexColor.substring(1, 3), 16),
+    green: parseInt(hexColor.substring(3, 5), 16),
+    blue: parseInt(hexColor.substring(5, 7), 16),
+  };
+  return convertedParticleColor;
 }

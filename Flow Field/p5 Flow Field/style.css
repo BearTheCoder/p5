@@ -59,6 +59,7 @@ input[type="color"] {
   width: 100%;
   background-color: white;
   border: 1px solid black;
+  padding: 5px
 }
 
 a {
@@ -83,6 +84,7 @@ a {
 
 #mainContent {
   display: flex;
+  flex-direction: column;
   width: 100%;
   padding: 0px 20px;
   justify-content: center;
