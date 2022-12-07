@@ -1,3 +1,5 @@
+// Iterated from: https://www.youtube.com/watch?v=BjoM9oKOAKY (The Coding Train - Coding Challenge #24: Perlin Noise Flow Field)
+
 function Particle () {
  this.pos = createVector(random(width), random(height));
  this.vel = createVector(0, 0);

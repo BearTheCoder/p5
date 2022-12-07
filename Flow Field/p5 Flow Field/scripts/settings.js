@@ -34,5 +34,4 @@ let settings = {
  adherence: 1,
  particleMaxSpeed: 2,
  flowMultiplier: 2,
-
 };
