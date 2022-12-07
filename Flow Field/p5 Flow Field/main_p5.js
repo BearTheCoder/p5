@@ -53,4 +53,7 @@ function updateFlowPhysics () {
   for (let i = 0; i <= settings.gridSizeX; i += settings.gridSquareSize) {
     flowField[i] = [];
   }
+  particles.forEach((particle) => {
+    particle.maxSpeed = settings.particleMaxSpeed;
+  });
 }
