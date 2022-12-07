@@ -1,0 +1,92 @@
+body {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 14px;
+}
+
+#mainHousing {
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+}
+
+#controlsHousing {
+  width: 200px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0px 20px;
+  margin-right: 10px;
+  background-color: white;
+  border: 1px solid black;
+}
+
+#flowFieldHeader {
+  font-family: 'Monoton', cursive;
+  text-decoration: underline;
+  font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+input[type="color"] {
+  width: 100%;
+  margin: 5px 0px;
+}
+
+.checkboxContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.rightJustifyTitle {
+  display: flex;
+  width: 75%;
+  justify-content: left;
+}
+
+.checkboxHousing {
+  display: flex;
+  width: 25%;
+  justify-content: right;
+}
+
+#canvasHousing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: white;
+  border: 1px solid black;
+  padding: 5px
+}
+
+a {
+  padding: 2px 5px;
+}
+
+#linkHousing {
+  display: flex;
+  width: 100%;
+  justify-content: right;
+  border: 1px solid black;
+}
+
+.sidebar {
+  display: flex;
+  width: 200px;
+  padding: 0px 20px;
+  margin-right: 10px;
+  justify-content: left;
+  border: 1px solid black;
+}
+
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0px 20px;
+  justify-content: center;
+  border: 1px solid black;
+}
