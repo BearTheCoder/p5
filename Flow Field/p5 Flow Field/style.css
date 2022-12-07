@@ -3,6 +3,15 @@ body {
   font-size: 14px;
 }
 
+.mainHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  border: 1px solid black;
+  margin: 0 10px;
+}
+
 .mainHousing {
   display: flex;
   flex-direction: row;
