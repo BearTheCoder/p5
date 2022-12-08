@@ -2,115 +2,124 @@
 <html lang="en">
 
 <head>
- <meta charset="UTF-8">
- <meta http-equiv="X-UA-Compatible" content="IE=edge">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>Perlin Noise</title>
- <link rel="stylesheet" href="style.css">
- <link rel="preconnect" href="https://fonts.googleapis.com">
- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
- <link rel="preconnect" href="https://fonts.googleapis.com">
- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
- <link rel="preconnect" href="https://fonts.googleapis.com">
- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
- <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Monoton&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perlin Noise</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Monoton&display=swap" rel="stylesheet">
 </head>
 
 <body>
- <header class="mainHeader">
-  <img src="./images/Bear_Paw.png" width="50" height="50">
- </header>
- <div class="mainHousing">
-  <!-- CONTROLS -->
-  <div id="controlsHousing">
-   <div id="perlinNoiseHeader">
-    <h3>p5 Noise</h3>
-   </div>
+  <header class="mainHeader">
+    <img src="./images/Bear_Paw.png" width="50" height="50">
+  </header>
+  <div class="mainHousing">
+    <!-- CONTROLS -->
+    <div id="controlsHousing">
+      <div id="perlinNoiseHeader">
+        <h3>p5 Noise</h3>
+      </div>
 
-   <div class="checkboxContainer">
-    <div class="rightJustifyTitle">
-     <label for="pauseCanvas">Pause Canvas:</label>
+      <div class="checkboxContainer">
+        <div class="rightJustifyTitle">
+          <label for="pauseCanvas">Pause Canvas:</label>
+        </div>
+        <div class="checkboxHousing">
+          <input id="pauseCanvas" type="checkbox" onclick="activateCanvasPause()">
+        </div>
+      </div>
+
+      <br>
+
+      <label class="newValueLabel" for="noiseCrowding">Noise Crowding: 0.01</label>
+      <input id="noiseCrowding" class="newValueInput" onchange="updateSettings()" type="range" min="0.001" max=".05"
+        value=".01" step=".001">
+      <label class="newValueLabel" for="gridSquareSize">Grid Square Size: 5</label>
+      <input id="gridSquareSize" class="newValueInput" onchange="updateSettings()" type="range" min="3" max="50"
+        value="5" step="1">
+      <label class="newValueLabel" for="octaveScale">Octave: 1</label>
+      <input id="octaveScale" class="newValueInput" onchange="updateSettings()" type="range" min="1" max="4" value="1"
+        step="1">
+      <label class="newValueLabel" for="octaveFrequency">Octave Freq: 0</label>
+      <input id="octaveFrequency" class="newValueInput" onchange="updateSettings()" type="range" min=".001" max="10"
+        value="0" step="0.01">
+      <label class="newValueLabel" for="octaveOpacity">Octave Op: 0</label>
+      <input id="octaveOpacity" class="newValueInput" onchange="updateSettings()" type="range" min=".01" max=".5"
+        value="0" step="0.01">
+      <label class="newValueLabel" for="xSpeed">X-Offset Speed: 0</label>
+      <input id="xSpeed" class="newValueInput" onchange="updateSettings()" type="range" min="0" max=".05" value="0"
+        step=".001">
+      <label class="newValueLabel" for="ySpeed">Y-Offset Speed: 0</label>
+      <input id="ySpeed" class="newValueInput" onchange="updateSettings()" type="range" min="0" max=".05" value="0"
+        step=".001">
+      <label class="newValueLabel" for="zSpeed">Z-Offset Speed: 0</label>
+      <input id="zSpeed" class="newValueInput" onchange="updateSettings()" type="range" min="0" max=".05" value="0"
+        step=".001">
+
+      <br>
+
+      <button onClick="takeScreenshot()">Take Screenshot</button>
+
+      <!-- Frame Rate -->
+      <h3 id="framerate"></h3>
     </div>
-    <div class="checkboxHousing">
-     <input id="pauseCanvas" type="checkbox" onclick="activateCanvasPause()">
+    <div id="canvasHousing">
+      <main id="myCanvas">
+      </main>
     </div>
-   </div>
-
-   <br>
-
-   <label class="newValueLabel" for="noiseCrowding">Noise Crowding: 0.01</label>
-   <input id="noiseCrowding" class="newValueInput" onchange="updateSettings()" type="range" min="0.001" max=".05"
-    value=".01" step=".001">
-   <label class="newValueLabel" for="gridSquareSize">Grid Square Size: 5</label>
-   <input id="gridSquareSize" class="newValueInput" onchange="updateSettings()" type="range" min="3" max="50" value="5"
-    step="1">
-   <label class="newValueLabel" for="xSpeed">X-Offset Speed: 0</label>
-   <input id="xSpeed" class="newValueInput" onchange="updateSettings()" type="range" min="0" max=".05" value="0"
-    step=".001">
-   <label class="newValueLabel" for="ySpeed">Y-Offset Speed: 0</label>
-   <input id="ySpeed" class="newValueInput" onchange="updateSettings()" type="range" min="0" max=".05" value="0"
-    step=".001">
-   <label class="newValueLabel" for="zSpeed">Z-Offset Speed: 0</label>
-   <input id="zSpeed" class="newValueInput" onchange="updateSettings()" type="range" min="0" max=".05" value="0"
-    step=".001">
-
-   <br>
-
-   <button onClick="takeScreenshot()">Take Screenshot</button>
-
-   <!-- Frame Rate -->
-   <h3 id="framerate"></h3>
   </div>
-  <div id="canvasHousing">
-   <main id="myCanvas">
-   </main>
-  </div>
- </div>
 
- <div class=" mainHousing">
-  <div id="linkHousing">
-   <a href="https://github.com/BearTheCoder/p5/tree/master/Flow%20Field/p5%20Flow%20Field" target="_blank">Look at
-    the code</a>
-   <a href="https://www.buymeacoffee.com/bearthecoder" target="_blank">Buy me a Coffee</a>
-   <a href="https://discord.gg/DuMJjretE2" target="_blank">Join the Discord</a>
-   <a href="https://www.youtube.com/channel/UCWg8LAQk6NLQfj4Wr3zImKA" target="_blank">Check out my YouTube</a>
-   <a href="https://twitter.com/BearTheCoder" target="_blank">Twitter</a>
+  <div class=" mainHousing">
+    <div id="linkHousing">
+      <a href="https://github.com/BearTheCoder/p5/tree/master/Flow%20Field/p5%20Flow%20Field" target="_blank">Look at
+        the code</a>
+      <a href="https://www.buymeacoffee.com/bearthecoder" target="_blank">Buy me a Coffee</a>
+      <a href="https://discord.gg/DuMJjretE2" target="_blank">Join the Discord</a>
+      <a href="https://www.youtube.com/channel/UCWg8LAQk6NLQfj4Wr3zImKA" target="_blank">Check out my YouTube</a>
+      <a href="https://twitter.com/BearTheCoder" target="_blank">Twitter</a>
+    </div>
   </div>
- </div>
 
- <div class="mainHousing">
-  <div id="sidebar">
-   <p>asdasdas</p>
+  <div class="mainHousing">
+    <div id="sidebar">
+      <p>asdasdas</p>
+    </div>
+    <div id="mainContent">
+      <h3> I'm gonna do this later...</h3>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus fugiat totam suscipit aperiam explicabo
+        velit
+        nobis enim asperiores animi, pariatur sit optio error maiores, at sint ullam deserunt. Eum, id.
+        Ullam laborum fuga eos modi culpa, illo libero expedita quam, voluptates distinctio a praesentium eaque fugiat
+        eligendi ipsum doloribus tempora vel, possimus labore! Sunt ut aperiam illo! Amet, odio adipisci.
+        Magni quisquam, cupiditate vel aspernatur sapiente enim consectetur, earum unde, assumenda expedita quidem
+        aliquam alias placeat fugiat beatae! Beatae fuga quae temporibus est iure illum non assumenda perferendis ad
+        nisi.
+        Vel quo nobis quas cumque maiores repellendus suscipit doloremque molestiae quasi neque, modi magni
+        exercitationem, ducimus iusto obcaecati nam. Id, laboriosam soluta recusandae iusto laborum ut eius ducimus
+        sunt
+        sed?
+        Neque obcaecati dolores inventore mollitia facilis qui ipsam modi excepturi reprehenderit quidem, pariatur
+        officiis similique explicabo consequuntur molestias porro debitis beatae, minima blanditiis nisi id quasi
+        deserunt. Dolorum, natus exercitationem!
+        Assumenda dicta eligendi hic blanditiis voluptas, ab quia corporis fugit reiciendis sunt voluptate culpa
+        tempore
+        omnis tenetur pariatur fuga reprehenderit nam error temporibus consequuntur itaque. Praesentium neque iste
+        necessitatibus eos.
+        Voluptate nulla minima dolor accusantium nostrum esse possimus non molestias obcaecati cupiditate ducimus
+        delectus cum sint est quaerat ipsam blanditiis saepe maxime assumenda consequuntur qui, commodi tenetur
+        aspernatur. Eligendi, sunt.
+        Ab, ducimus aliquid officia omnis est enim? Consequatur voluptatem earum facere a rerum perferendis at ex,
+        dolor
+        dicta impedit accusantium quibusdam ipsam quam aspernatur assumenda odit ab ullam fuga officia?</p>
+    </div>
   </div>
-  <div id="mainContent">
-   <h3> I'm gonna do this later...</h3>
-   <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus fugiat totam suscipit aperiam explicabo
-    velit
-    nobis enim asperiores animi, pariatur sit optio error maiores, at sint ullam deserunt. Eum, id.
-    Ullam laborum fuga eos modi culpa, illo libero expedita quam, voluptates distinctio a praesentium eaque fugiat
-    eligendi ipsum doloribus tempora vel, possimus labore! Sunt ut aperiam illo! Amet, odio adipisci.
-    Magni quisquam, cupiditate vel aspernatur sapiente enim consectetur, earum unde, assumenda expedita quidem
-    aliquam alias placeat fugiat beatae! Beatae fuga quae temporibus est iure illum non assumenda perferendis ad
-    nisi.
-    Vel quo nobis quas cumque maiores repellendus suscipit doloremque molestiae quasi neque, modi magni
-    exercitationem, ducimus iusto obcaecati nam. Id, laboriosam soluta recusandae iusto laborum ut eius ducimus
-    sunt
-    sed?
-    Neque obcaecati dolores inventore mollitia facilis qui ipsam modi excepturi reprehenderit quidem, pariatur
-    officiis similique explicabo consequuntur molestias porro debitis beatae, minima blanditiis nisi id quasi
-    deserunt. Dolorum, natus exercitationem!
-    Assumenda dicta eligendi hic blanditiis voluptas, ab quia corporis fugit reiciendis sunt voluptate culpa
-    tempore
-    omnis tenetur pariatur fuga reprehenderit nam error temporibus consequuntur itaque. Praesentium neque iste
-    necessitatibus eos.
-    Voluptate nulla minima dolor accusantium nostrum esse possimus non molestias obcaecati cupiditate ducimus
-    delectus cum sint est quaerat ipsam blanditiis saepe maxime assumenda consequuntur qui, commodi tenetur
-    aspernatur. Eligendi, sunt.
-    Ab, ducimus aliquid officia omnis est enim? Consequatur voluptatem earum facere a rerum perferendis at ex,
-    dolor
-    dicta impedit accusantium quibusdam ipsam quam aspernatur assumenda odit ab ullam fuga officia?</p>
-  </div>
- </div>
 </body>
 <script src="main_p5.js"></script>
 <script src="../../p5.js"></script>

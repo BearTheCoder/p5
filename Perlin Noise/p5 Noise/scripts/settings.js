@@ -10,5 +10,9 @@ settings = {
  ySpeed: 0,
  zSpeed: 0,
 
+ octaveScale: 1,
+ octaveOpacity: 0,
+ octaveFrequency: 0,
+
  pauseCanvas: false,
 };

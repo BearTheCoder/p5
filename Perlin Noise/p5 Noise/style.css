@@ -20,7 +20,7 @@ body {
 
 #controlsHousing {
   width: 200px;
-  height: 500px;
+  height: 550px;
   display: flex;
   flex-direction: column;
   padding: 0px 20px;
