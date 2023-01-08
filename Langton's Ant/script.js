@@ -4,7 +4,7 @@ let ant = {};
 let grid = null;
 function setup () {
   createCanvas(width, height);
-  background(200);
+  background(255);
   grid = createMultiDimensionalArray(width, height);
   ant = {
     location: createVector(width / 2, height / 2),
@@ -24,7 +24,7 @@ function createMultiDimensionalArray (width, height) {
 }
 
 function draw () {
-  renderFrames(100);
+  renderFrames(10000);
 }
 
 function renderFrames (framerate) {
