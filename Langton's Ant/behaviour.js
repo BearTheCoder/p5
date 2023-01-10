@@ -1,7 +1,16 @@
+const conditions = [
+  { checkColor: "#000000", afterColor: "#ffffff", behaviour: -1 },
+  { checkColor: "#880808", afterColor: "#000000", behaviour: 1 },
+  { checkColor: "#00ffff", afterColor: "#880808", behaviour: 1 },
+  { checkColor: "#ffffff", afterColor: "#00ffff", behaviour: -1 },
+
+];
+
 const width = 800;
 const height = 400;
 let ant = {};
 let grid = null;
+
 function setup () {
   createCanvas(width, height);
   background(255);
@@ -12,7 +21,7 @@ function setup () {
   };
   for (let x = 0; x < width; x++) {
     for (let y = 0; y < height; y++) {
-      grid[x][y] = false;
+      grid[x][y] = conditions[conditions.length - 1].checkColor;
     }
   }
 }
@@ -29,17 +38,21 @@ function draw () {
 
 function renderFrames (framerate) {
   for (let i = 0; i < framerate; i++) {
-    ant.location.x = ant.location.x === -1 ? width - 1 : ant.location.x;
-    ant.location.y = ant.location.y === -1 ? height - 1 : ant.location.y;
-    ant.location.x = ant.location.x === width ? 0 : ant.location.x;
-    ant.location.y = ant.location.y === height ? 0 : ant.location.y;
-    grid[ant.location.x][ant.location.y] = !grid[ant.location.x][ant.location.y];
-    let color = grid[ant.location.x][ant.location.y] ? 0 : 255;
+    antEdgeControl();
+    let condition = null;
+    conditions.forEach(el => condition = el.checkColor === grid[ant.location.x][ant.location.y] ? el : condition);
+    grid[ant.location.x][ant.location.y] = condition.afterColor;
     point(ant.location.x, ant.location.y);
-    stroke(color);
-    let movement = color === 0 ? 1 : -1;
-    turnAnt(movement);
+    stroke(condition.afterColor);
+    turnAnt(condition.behaviour);
   }
+}
+
+function antEdgeControl () {
+  ant.location.x = ant.location.x === -1 ? width - 1 : ant.location.x;
+  ant.location.y = ant.location.y === -1 ? height - 1 : ant.location.y;
+  ant.location.x = ant.location.x === width ? 0 : ant.location.x;
+  ant.location.y = ant.location.y === height ? 0 : ant.location.y;
 }
 
 function turnAnt (movement) {
