@@ -1,13 +1,3 @@
-behaviour = [
-  { color: "rgb(255)", turn: "L" },
-  { color: "rgb(0)", turn: "R" }
-];
-
-
-
-
-
-
 const width = 800;
 const height = 400;
 let ant = {};
@@ -33,9 +23,7 @@ function createMultiDimensionalArray (width, height) {
   return MDArray;
 }
 
-function draw () {
-  renderFrames(100);
-}
+function draw () { renderFrames(100); }
 
 function renderFrames (framerate) {
   for (let i = 0; i < framerate; i++) {
