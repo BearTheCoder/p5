@@ -1,13 +1,3 @@
-behaviour = [
-  { color: "rgb(255)", turn: "L" },
-  { color: "rgb(0)", turn: "R" }
-];
-
-
-
-
-
-
 const width = 800;
 const height = 400;
 let ant = {};
