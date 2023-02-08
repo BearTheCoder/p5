@@ -39,18 +39,18 @@ function drawSun () {
 }
 
 function drawMountains (randomStartPoint, parallaxEffect, disctanceAmplifier, contrast) {
-  for (let i = 0; i < width; i += noiseResolution, offset += offsetSpeed) {
+  for (let i = 0; i < width; i += noiseAmp, offset += offsetSpeed) {
     let xOff = ((offset + randomStartPoint) / parallaxEffect);
     yVal = noise((i + xOff) * noiseScale, basePoint * noiseScale) * noiseAmplifier * disctanceAmplifier;
     push();
-    strokeWeight(noiseResolution * 2);
+    strokeWeight(noiseAmp * 2);
     stroke(contrast);
     if (i === 0) {
-      line(i, basePoint - yVal, i + noiseResolution, basePoint - yVal);
+      line(i, basePoint - yVal, i + noiseAmp, basePoint - yVal);
       line(i, basePoint - yVal, i, height);
     }
     else {
-      line(i, priorVal, i + noiseResolution, basePoint - yVal);
+      line(i, priorVal, i + noiseAmp, basePoint - yVal);
       line(i, priorVal, i, height);
     }
     priorVal = basePoint - yVal;
