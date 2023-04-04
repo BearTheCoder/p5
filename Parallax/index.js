@@ -1,8 +1,7 @@
 const width = 1920;
 const height = 1080;
-
 const noiseScale = .005;
-const noiseAmplifier = 300;
+const noiseAmplifier = 200;
 const noiseResolution = 10;
 const offsetSpeed = 0.001;
 const layers = 10;
@@ -23,11 +22,12 @@ function setup () {
 }
 
 function draw () {
-  background(245);
+  background(255);
   drawSun();
   for (let i = 1; i < layers + 1; i++) {
-    drawMountains(randNumArray[i - 1], 24 / (i * i), 2 / i, 225 / i);
+    drawMountains(randNumArray[i - 1], 24 / (i * i), 2 / (i - 0.5), 225 / i);
   }
+
 }
 
 function drawSun () {
@@ -39,18 +39,18 @@ function drawSun () {
 }
 
 function drawMountains (randomStartPoint, parallaxEffect, disctanceAmplifier, contrast) {
-  for (let i = 0; i < width; i += noiseAmp, offset += offsetSpeed) {
+  for (let i = 0; i < width; i += noiseResolution, offset += offsetSpeed) {
     let xOff = ((offset + randomStartPoint) / parallaxEffect);
     yVal = noise((i + xOff) * noiseScale, basePoint * noiseScale) * noiseAmplifier * disctanceAmplifier;
     push();
-    strokeWeight(noiseAmp * 2);
+    strokeWeight(noiseResolution * 2);
     stroke(contrast);
     if (i === 0) {
-      line(i, basePoint - yVal, i + noiseAmp, basePoint - yVal);
+      line(i, basePoint - yVal, i + noiseResolution, basePoint - yVal);
       line(i, basePoint - yVal, i, height);
     }
     else {
-      line(i, priorVal, i + noiseAmp, basePoint - yVal);
+      line(i, priorVal, i + noiseResolution, basePoint - yVal);
       line(i, priorVal, i, height);
     }
     priorVal = basePoint - yVal;
